@@ -1,0 +1,141 @@
+<section class="espaco">
+
+<div class="container">
+
+    <div class="card text-center">
+      <div class="card-header">
+       <h2>{{titulo}}</h2>
+      </div>
+      <div class="card-body">
+      <form  [formGroup]="formCarro" (ngSubmit)="onSubmit()">
+        <input type="hidden" id="id" name="id"   formControlName="id">
+       
+       
+        
+                
+         
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="timestamp_cadastro">Data</label>
+              <input type="text"  formControlName="timestamp_cadastro" placeholder="dd/mm/yyyy" class="form-control" id="timestamp_cadastro">
+           
+              <div *ngIf="timestamp_cadastro.invalid && (timestamp_cadastro.dirty || timestamp_cadastro.touched)" class="alert alert-danger">
+                <div class="text-danger" *ngIf="timestamp_cadastro.errors?.required">
+                  Campo data é obrigatorio
+                </div>
+                              
+              </div>
+           
+            </div>
+            <div class="form-group col-md-3">
+              <label for="marca_id">Marca</label>
+               <select id="marca_id" (change)="carregarModelosPorMarca($event)" formControlName="marca_id" class="form-control">               
+                <div *ngIf="mensagemSelect">
+                  <option >Carregando...</option>
+                </div>
+                <option *ngFor="let marca of marcas" value={{marca.id}}>{{marca.nome_marca}}</option>
+              </select>
+              <div *ngIf="marca_id.invalid && (marca_id.dirty || marca_id.touched)" class="alert alert-danger">
+                <div class="text-danger" *ngIf="marca_id.errors?.required">
+                  Campo marca é obrigatorio
+                </div>
+                              
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="modelo_id">Modelo</label>
+              <select id="modelo_id" formControlName="modelo_id" class="form-control">               
+                <option *ngFor="let modelo of modelos" value={{modelo.id}}>{{modelo.nome}}</option>
+              </select>
+
+              <div *ngIf="modelo_id.invalid && (modelo_id.dirty || modelo_id.touched)" class="alert alert-danger">
+                <div class="text-danger" *ngIf="modelo_id.errors?.required">
+                  Campo modelo é obrigatorio
+                </div>
+                              
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="ano">Ano</label>
+              <input type="number" formControlName="ano" min="1800" class="form-control" id="ano">
+           
+<div *ngIf="ano.invalid && (ano.dirty || ano.touched)" class="alert alert-danger">
+                <div class="text-danger" *ngIf="ano.errors?.required">
+                  Campo ano é obrigatorio
+                </div>
+                              
+              </div>
+
+		   </div>
+
+            
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="combustivel">Combustivel</label>
+              <input type="text" formControlName="combustivel" class="form-control" id="combustivel">
+
+
+              <div *ngIf="combustivel.invalid && (combustivel.dirty || combustivel.touched)" class="alert alert-danger">
+                <div class="text-danger" *ngIf="combustivel.errors?.required">
+                  Campo combustivel é obrigatorio
+                </div>
+  
+                <div *ngIf="combustivel.errors?.minlength" class="alert alert-danger">
+                  Minimo de 3 caracteres
+                </div>
+  
+                <div *ngIf="combustivel.errors?.maxlength" class="alert alert-danger">
+                  Maximo de 255 caracteres
+                </div>
+  
+                
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="num_portas">Portas</label>
+              <input type="number" formControlName="num_portas" min="2" class="form-control" id="num_portas">
+            
+              <div *ngIf="num_portas.invalid && (num_portas.dirty || num_portas.touched)" class="alert alert-danger">
+                <div class="text-danger" *ngIf="num_portas.errors?.required">
+                  Campo Portas  é obrigatorio
+                </div>
+                              
+              </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="cor">Cor</label>
+                <input type="text" formControlName="cor" class="form-control" id="cor">
+
+                <div *ngIf="cor.invalid && (cor.dirty || cor.touched)" class="alert alert-danger">
+                    <div class="text-danger" *ngIf="cor.errors?.required">
+                      Campo cor é obrigatorio
+                    </div>
+      
+                    <div *ngIf="cor.errors?.minlength" class="alert alert-danger">
+                      Minimo de 3 caracteres
+                    </div>
+      
+                    <div *ngIf="cor.errors?.maxlength" class="alert alert-danger">
+                      Maximo de 255 caracteres
+                    </div>
+      
+                    
+                  </div>
+              </div>
+          </div>
+          
+       
+        <button type="submit"  [disabled]="formCarro.invalid" class="btn btn-primary">Salvar</button>
+      </form>
+      </div>
+    <br/>
+    </div>
+
+</div>
+
+</section>

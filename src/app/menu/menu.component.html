@@ -1,0 +1,34 @@
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" [routerLink]="'.'">
+            MeuCarro
+      </a>
+
+      
+  
+      
+      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+        &#9776;
+      </button>
+  
+      
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            
+            <a class="nav-link" routerLink="/marca"    routerLinkActive="selected"  (click)="isMenuCollapsed = true">Marcas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="/modelo"   routerLinkActive="selected"  (click)="isMenuCollapsed = true">Modelos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"routerLink="/carro"   routerLinkActive="selected"  (click)="isMenuCollapsed = true">Carros</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,54 @@
+<section class="espaco">
+<div class="container">
+
+    <div class="card text-center">
+      <div class="card-header">
+       <h2>{{titulo}}</h2>
+       <div *ngIf="spinner">
+        <br>
+        <app-spinner></app-spinner>
+      </div>
+      </div>
+      <div class="card-body">
+      <form [formGroup]="formMarca" (ngSubmit)="onSubmit()">
+        <input type="hidden" id="id" name="id"   formControlName="id">
+
+        <div class="row">  
+            <div class="col-md-7">
+                <label for="nome_marca">Nome:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"  formControlName="nome_marca" placeholder="Cadastrar marca">
+                    <div class="input-group-append">
+                      <button type="submit" [disabled]="formMarca.invalid" class="btn btn-primary">Salvar</button>
+                      
+                      
+                    </div>
+                  </div>
+
+                  <div *ngIf="nome_marca.invalid && (nome_marca.dirty || nome_marca.touched)" class="alert alert-danger">
+                    <div class="text-danger" *ngIf="nome_marca.errors?.required">
+                      Campo nome é obrigatorio
+                    </div>
+      
+                    <div *ngIf="nome_marca.errors?.minlength" class="alert alert-danger">
+                      Minimo de 2 caracteres
+                    </div>
+      
+                    <div *ngIf="nome_marca.errors?.maxlength" class="alert alert-danger">
+                      Maximo de 255 caracteres
+                    </div>
+      
+                    
+                  </div>
+            </div> 
+               
+            
+          </div>
+          
+      </form>
+    </div>
+    <br/>
+    </div>
+
+</div>
+</section>
